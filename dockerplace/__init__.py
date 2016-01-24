@@ -5,4 +5,3 @@ app = Flask(__name__)
 app.config.from_object('settings')
 csrf(app)
 from dockerplace import main
-
