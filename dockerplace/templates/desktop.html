@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>My Dockerplace</title>
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href='//fonts.googleapis.com/css?family=Raleway:400,300,600' rel='stylesheet' type='text/css'>
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="static/css/normalize.css">
+  <link rel="stylesheet" href="static/css/skeleton.css">
+  <link rel="stylesheet" href="static/css/custom.css">
+
+  <!-- Scripts
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+
+  <div class="section values">
+    <div class="container">
+      <div class="row">
+          <h1 class="value-multiplier">Existant services</h1>
+          <p>This is a list of available containers</p>
+
+
+      </div>
+      <div class="row">
+{% for service in services.iteritems() %}
+        <div class="one-half column value">
+          <h2 class="value-multiplier">{{service[0]}}</h2>
+           <img class="service-icon" src="{{ service[1]["image"] }}" />
+           {% for action in service["actions"] %}
+           <a href="/service/action?a={{action}}" class="button" ><h5 class="value-heading">{{action}}</h5> </a>
+           {% endfor %}
+           <p>{{service}}</p>
+        </div>
+{%endfor%}
+      </div> <!-- row -->
+ 
+    </div> <!-- container -->
+  </div> <!-- section -->
+
+
+
+
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
+
