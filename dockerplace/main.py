@@ -2,7 +2,7 @@
 from flask import Flask, url_for, render_template, request, \
     redirect, abort, session, g, flash, Markup
 import helpers
-from myapp import app
+from dockerplace import app
 
 @app.route('/event', defaults={"path": ""})
 @app.route('/event/<path:whatever>')

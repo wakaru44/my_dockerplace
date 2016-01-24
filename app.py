@@ -1,5 +1,5 @@
 
-from myapp import app
+from dockerplace import app
 
 if __name__ == '__main__':
     if not app.debug:
