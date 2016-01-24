@@ -5,7 +5,7 @@ from fabric.api import local, settings
 from retricon import retricon
 
 
-def get_imageid(something=None):
+def get_imageid(something):
     """
     create an identicon picture out of a string
     """
@@ -35,11 +35,10 @@ def get_container_actions(makefile_base):
     return output
 
 
-def get_all_actions(docker_home=None):
+def get_all_actions(docker_home):
     """
     get the list of all actions for all the containers
     """
-    assert docker_home is not None
     containers = get_containers(docker_home)
     services = []
     for container in containers:
@@ -56,12 +55,11 @@ def get_all_actions(docker_home=None):
     return services
 
 
-def get_containers(docker_home=None):
+def get_containers(docker_home):
     """
     obtain the list of available folders in a given path.
     we assume this is a list of the available containers
     """
-    assert docker_home is not None
     with settings(warn_only=True):
         output = local("ls {0}".format(docker_home), capture=True)
     result = output.split()
