@@ -1,5 +1,10 @@
 help:
-	@echo "testing some things about makefiles"
+	@echo "Welcome to your Docker Place"
+	@echo ""
+	@echo "run     - Execute the service in dev mode"
+	@echo "install - Install the requirements"
+	@echo "test    - run the tests"
+	@echo ""
 
 run:
 	python app.py

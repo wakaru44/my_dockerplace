@@ -14,6 +14,23 @@ Change the folder in settings.py to the one in your machine.
 
 ## Running
 
-for the non-dockerized version, 
+There are tasks ready in a `Makefile`. Just run
 
-    python app.py
+    make
+
+to see the available tasks.
+
+## TL;DR - Quickstart
+
+clone the repo
+
+    git clone https://github.com/wakaru44/my_dockerplace.git
+    cd my_dockerplace
+
+install dependencies
+
+    make install
+
+run the app
+
+    make run
