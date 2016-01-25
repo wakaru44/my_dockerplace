@@ -1,4 +1,8 @@
 
+#output-window {
+    background-color:black;
+    color:green;
+}
 
 .service-icon {
   max-width: 100px;

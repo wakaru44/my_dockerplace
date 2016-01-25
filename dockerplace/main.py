@@ -21,6 +21,14 @@ def desktop():
         )
 
 
+@app.route('/service/action')
+def service_action_runner():
+    return render_template(
+        "console.html",
+        data={"some": "thing"}
+        )
+
+
 @app.route('/redirect-to-<function>')
 def pointless_redirect(function=None):
     return redirect(url_for(function))
