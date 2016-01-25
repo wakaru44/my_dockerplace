@@ -1,0 +1,8 @@
+
+           {% if service["actions"] %}
+               {% for action in service["actions"] %}
+               <a href="/service/action?a={{ action }}&s={{ service["name"] }}" class="button" ><h5 class="value-heading">{{action}}</h5> </a>
+               {% endfor %}
+           {% else %}
+              <p class="discrete" >No actions found</p>
+           {% endif %}

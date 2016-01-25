@@ -24,14 +24,12 @@
 
       </div>
       <div class="row">
-{% for service in services %}
+{% for service in data.services %}
         <div class="one-half column value">
           <h2 class="value-multiplier">{{ service["name"] }}</h2>
            <img class="service-icon" src="{{ service["image"] }}" />
-           {% for action in service["actions"] %}
-           <a href="/service/action?a={{ action }}&s={{ service["name"] }}" class="button" ><h5 class="value-heading">{{action}}</h5> </a>
-           {% endfor %}
-           <p>{{service}}</p>
+           {% include "blocks/desktop_actions.html" %}
+           {% include "blocks/debug.html" %}
         </div>
 {%endfor%}
       </div> <!-- row -->

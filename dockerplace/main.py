@@ -17,7 +17,10 @@ def desktop():
     """
     return render_template(
         "desktop.html",
-        services=get_all_actions(app.config["DOCKER_SERVICES_HOME"])
+        data={
+            "services": get_all_actions(app.config["DOCKER_SERVICES_HOME"]),
+            #"debug": False}
+            "debug": app.config["DEBUG"]}
         )
 
 
@@ -37,7 +40,7 @@ def service_action_runner():
     service_data = {
         "name": "awesome dockerized app",
         "action": {
-            "result": result}
+            "result": result}}
 
     return render_template(
         "console.html",

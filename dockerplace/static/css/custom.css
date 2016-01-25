@@ -1,9 +1,17 @@
 
+/* a less invasive piece of text */
+.discrete {
+    color: grey;
+}
+
+/* The div that shows the output of the action as a console */
 #output-window {
     background-color:black;
     color:green;
 }
 
+
+/* the icon of each container in the desktop */
 .service-icon {
   max-width: 100px;
 }
