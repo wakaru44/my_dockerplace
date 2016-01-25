@@ -23,9 +23,13 @@ def desktop():
 
 @app.route('/service/action')
 def service_action_runner():
+    """
+    This view shows the result of running some action
+    from the Makefile, on the selected service
+    """
     return render_template(
         "console.html",
-        data={"some": "thing"}
+        service={"name": "awesome dockerized app"}
         )
 
 

@@ -23,12 +23,20 @@
          
       </div>
       <div class="row">
+        <div class="twelve column value">
+          <h2 class="value-multiplier">{{ service["name"] }}</h2>
+        </div>
+      </div> <!-- row -->
+      <div class="row">
         <div class="one-third column value">
-          <h2 class="value-multiplier">a small something {{m}}</h2>
-          <a href="/down?m={{m}}" class="button" ><h5 class="value-heading">A button</h5> </a>
+          <a href="/desktop" class="button" ><h5 class="value-heading">Back to desktop</h5> </a>
+        </div>
+        <div class="one-third column value">
           <a href="/fire?m={{m}}" class="button" ><h5 class="value-heading">A nother Button</h5> </a>
         </div>
-        <div class="one column value">
+      </div> <!-- row -->
+      <div class="row">
+        <div class="twelve column value">
           <h2 class="value-multiplier">something bigger {{m}}</h2>
           <div id="output-window" >a text area with some data or something</div>
         </div>
