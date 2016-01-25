@@ -38,7 +38,14 @@
       <div class="row">
         <div class="twelve column value">
           <h2 class="value-multiplier">something bigger {{m}}</h2>
-          <div id="output-window" >a text area with some data or something</div>
+          <div id="output-window" >
+              {% if service["action"]["result"] %}
+                  {{ service["action"]["result"] }}
+              {% else %}
+                  <p>output normally goes here. If you can read this, someting bad hapened.</p>
+                  <h1>:(</h1>
+              {% endif %}
+          </div>
         </div>
       </div> <!-- row -->
  

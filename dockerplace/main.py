@@ -21,16 +21,27 @@ def desktop():
         )
 
 
-@app.route('/service/action')
+@app.route('/service/action', methods=['GET'])
 def service_action_runner():
     """
     This view shows the result of running some action
     from the Makefile, on the selected service
     """
+    action = request.args.get("a")
+    service = request.args.get("s")
+
+    result = "running {0} on {1} was nice".format(
+        action,
+        service)
+
+    service_data = {
+        "name": "awesome dockerized app",
+        "action": {
+            "result": result}
+
     return render_template(
         "console.html",
-        service={"name": "awesome dockerized app"}
-        )
+        service=service_data)
 
 
 @app.route('/redirect-to-<function>')
