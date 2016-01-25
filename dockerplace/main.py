@@ -1,4 +1,5 @@
 
+import requests
 from flask import Flask, url_for, render_template, request, \
     redirect, abort, session, g, flash, Markup
 from dockerplace import app
@@ -23,6 +24,15 @@ def desktop():
             }
         )
 
+
+@app.route('/quickstart')
+def quickstart():
+    """
+    just a list of your my repos with docker containers in them
+    """
+    content = requests.get("https://api.github.com/users/wakaru44/repos")
+    repo_list = [ v["full_name"] for v in content.json() ]
+    return "This are my repos: {0}".format(repo_list)
 
 @app.route('/service/action', methods=['GET'])
 def console_view():
