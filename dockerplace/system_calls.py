@@ -28,6 +28,9 @@ def get_imageid(something):
     filename = hashname + ".png"
     savepath = join(location["local"], filename)
     if not isfile(savepath):
+        # first ensure we got cache folder
+        if not isfile(location["local"]):
+            do_run("mkdir {0}".format(location["local"]))
         # only create if it doesn't exist already
         img = retricon(str(hashname))
         img.save(savepath, "PNG")
