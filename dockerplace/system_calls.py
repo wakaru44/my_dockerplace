@@ -4,7 +4,7 @@ import md5
 from fabric.api import local, settings
 from retricon import retricon
 
-from helpers import is_there_makefile, parse_make
+from helpers import is_there_makefile, parse_make, sanitize
 
 
 def do_run(command):
@@ -39,14 +39,16 @@ def get_container_actions(makefile_base):
     get the available actions from the makefile in a given folder
     """
     output = do_run("ls {0}".format(makefile_base))
-    if is_there_makefile(output):
+    if output.find("Makefile") >0:
+    # if is_there_makefile(output):  # this is a dependency nightmare to test
         output = do_run(
             """cd {0};\
                     cat Makefile | grep "^[a-z]*:" | cut -d ":" -f 1""".format(
                 makefile_base))
-        actions = parse_make(output)
+        # actions = parse_make(output)  # for now, I will not try to parse output smart
+        actions = output.split("\n")
     else:
-        actions = []
+        actions = ["None"]
 
     return actions
 
@@ -58,7 +60,6 @@ def get_all_actions(docker_home):
     containers = get_containers(docker_home)
     services = []
     for container in containers:
-        print("XXX: " + docker_home + "/" + container)
         actions = get_container_actions(join(docker_home, container))
         services.append(
             {
@@ -79,3 +80,19 @@ def get_containers(docker_home):
     output = do_run("ls {0}".format(docker_home))
     result = output.split()
     return result
+
+
+def run_make_action(docker_home, service, action):
+    """
+    go and run the make tasks on the folder of the container.
+    docker_home is needed while we find a better way of retrieving it,
+    service is the name of the folder,
+    action is the task to be run.
+    """
+    service = sanitize(service)
+    action = sanitize(action)
+    # seems obvious, is here for refactoring purposes
+    docker_home = docker_home
+    base_dir = join(docker_home, service)
+    output = do_run("cd {0}; make {1}".format(base_dir, action))
+    return output

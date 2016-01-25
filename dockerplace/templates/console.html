@@ -19,7 +19,7 @@
     <div class="container">
       <div class="row">
         <div class="twelve column value">
-          <h2 class="value-multiplier">{{ service["name"] }}</h2>
+          <h2 class="value-multiplier">{{ data.service["action"]["name"] }} on {{ data.service["name"] }}</h2>
           <p>Here you can see the results of your actions performed on the service</p>
         </div>
       </div> <!-- row -->
@@ -28,20 +28,20 @@
           <a href="/desktop" class="button" ><h5 class="value-heading">Back to desktop</h5> </a>
         </div>
         <div class="one-third column value">
-          <a href="/fire?m={{m}}" class="button" ><h5 class="value-heading">A nother Button</h5> </a>
+          <a href="http://localhost:9000/#/containers" class="button" ><h5 class="value-heading">To docker.ui</h5> </a>
         </div>
       </div> <!-- row -->
       <div class="row">
         <div class="twelve column value">
           <h2 class="value-multiplier">Console Output</h2>
-          <div id="output-window" >
-              {% if service["action"]["result"] %}
-                  {{ service["action"]["result"] }}
+          <pre id="output-window" >
+              {% if data.service["action"]["result"] %}
+                  {{ data.service["action"]["result"] }}
               {% else %}
                   <p>output normally goes here. If you can read this, someting bad hapened.</p>
                   <h1>:(</h1>
               {% endif %}
-          </div>
+          </pre>
         </div>
       </div> <!-- row -->
  
@@ -49,6 +49,7 @@
   </div> <!-- section -->
 
 
+  {% include "blocks/debug.html" %}
 
 
 <!-- End Document

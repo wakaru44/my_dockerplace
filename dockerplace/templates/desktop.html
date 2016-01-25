@@ -29,7 +29,6 @@
           <h2 class="value-multiplier">{{ service["name"] }}</h2>
            <img class="service-icon" src="{{ service["image"] }}" />
            {% include "blocks/desktop_actions.html" %}
-           {% include "blocks/debug.html" %}
         </div>
 {%endfor%}
       </div> <!-- row -->
@@ -38,6 +37,7 @@
   </div> <!-- section -->
 
 
+           {% include "blocks/debug.html" %}
 
 
 <!-- End Document

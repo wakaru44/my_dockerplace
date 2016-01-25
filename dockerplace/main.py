@@ -2,7 +2,7 @@
 from flask import Flask, url_for, render_template, request, \
     redirect, abort, session, g, flash, Markup
 from dockerplace import app
-from dockerplace.system_calls import get_all_actions
+from dockerplace.system_calls import get_all_actions, run_make_action
 
 
 @app.route('/')
@@ -19,13 +19,13 @@ def desktop():
         "desktop.html",
         data={
             "services": get_all_actions(app.config["DOCKER_SERVICES_HOME"]),
-            "debug": False}
-            #"debug": app.config["DEBUG"]}
+            "debug": app.config["DEBUG"]
+            }
         )
 
 
 @app.route('/service/action', methods=['GET'])
-def service_action_runner():
+def console_view():
     """
     This view shows the result of running some action
     from the Makefile, on the selected service
@@ -33,18 +33,20 @@ def service_action_runner():
     action = request.args.get("a")
     service = request.args.get("s")
 
-    result = "running {0} on {1} was nice".format(
-        action,
-        service)
+    result = run_make_action(
+        app.config["DOCKER_SERVICES_HOME"],
+        service,
+        action)
 
     service_data = {
-        "name": "awesome dockerized app",
+        "name": service,
         "action": {
+            "name": action,
             "result": result}}
 
     return render_template(
         "console.html",
-        service=service_data)
+        data={"service": service_data, "debug": app.config["DEBUG"] })
 
 
 @app.route('/redirect-to-<function>')
