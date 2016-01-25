@@ -16,6 +16,10 @@ clone the repo
     git clone https://github.com/wakaru44/my_dockerplace.git
     cd my_dockerplace
 
+customize your docker home folder (where your containers live)
+
+    vim settings.py
+
 install dependencies and run the app
 
     make install && make run
