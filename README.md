@@ -1,9 +1,12 @@
 
 # My Docker Place
 
-My Dockerplace is a simple web app to control your container applications.
+My Dockerplace is a simple web app to control your container applications. From a simple "desktop"
 
 ![An example of the desktop, with your docker services on display](https://raw.githubusercontent.com/wakaru44/my_dockerplace/master/doc/img/screen_desktop_01.png)
+
+And see the output on the web
+
 ![An example (with fake data) of how the output would look like](https://raw.githubusercontent.com/wakaru44/my_dockerplace/master/doc/img/screen_console_01.png)
 
 ## TL;DR - Quickstart
