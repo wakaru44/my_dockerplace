@@ -14,7 +14,7 @@ install-global:
 	sudo pip install -r requirements.txt
 
 
-install_venv:
+install-venv:
 	virtualenv ENV; source bin/activate; pip install -r requirements.txt
 
 test:
