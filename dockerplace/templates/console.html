@@ -18,13 +18,9 @@
   <div class="section values">
     <div class="container">
       <div class="row">
-          <h2 class="value-multiplier">Pick a machine to reboot/restart the browser.</h2>
-	  <p>Here you can see the results of your actions performed on the service</p>
-         
-      </div>
-      <div class="row">
         <div class="twelve column value">
           <h2 class="value-multiplier">{{ service["name"] }}</h2>
+          <p>Here you can see the results of your actions performed on the service</p>
         </div>
       </div> <!-- row -->
       <div class="row">
@@ -37,7 +33,7 @@
       </div> <!-- row -->
       <div class="row">
         <div class="twelve column value">
-          <h2 class="value-multiplier">something bigger {{m}}</h2>
+          <h2 class="value-multiplier">Console Output</h2>
           <div id="output-window" >
               {% if service["action"]["result"] %}
                   {{ service["action"]["result"] }}

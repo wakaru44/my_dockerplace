@@ -19,8 +19,8 @@ def desktop():
         "desktop.html",
         data={
             "services": get_all_actions(app.config["DOCKER_SERVICES_HOME"]),
-            #"debug": False}
-            "debug": app.config["DEBUG"]}
+            "debug": False}
+            #"debug": app.config["DEBUG"]}
         )
 
 
