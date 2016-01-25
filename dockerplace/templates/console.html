@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>My Dockerplace</title>
+  <title>Service Console</title>
 
   {% include "common_header.html" %}
 
@@ -18,22 +18,20 @@
   <div class="section values">
     <div class="container">
       <div class="row">
-          <h1 class="value-multiplier">Existant services</h1>
-          <p>This is a list of available containers</p>
-
-
+          <h2 class="value-multiplier">Pick a machine to reboot/restart the browser.</h2>
+	  <p>Here you can see the results of your actions performed on the service</p>
+         
       </div>
       <div class="row">
-{% for service in services %}
-        <div class="one-half column value">
-          <h2 class="value-multiplier">{{ service["name"] }}</h2>
-           <img class="service-icon" src="{{ service["image"] }}" />
-           {% for action in service["actions"] %}
-           <a href="/service/action?a={{action}}" class="button" ><h5 class="value-heading">{{action}}</h5> </a>
-           {% endfor %}
-           <p>{{service}}</p>
+        <div class="one-third column value">
+          <h2 class="value-multiplier">a small something {{m}}</h2>
+          <a href="/down?m={{m}}" class="button" ><h5 class="value-heading">A button</h5> </a>
+          <a href="/fire?m={{m}}" class="button" ><h5 class="value-heading">A nother Button</h5> </a>
         </div>
-{%endfor%}
+        <div class="one column value">
+          <h2 class="value-multiplier">something bigger {{m}}</h2>
+          <div id="output-window" >a text area with some data or something</div>
+        </div>
       </div> <!-- row -->
  
     </div> <!-- container -->
