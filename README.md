@@ -9,6 +9,9 @@ And see the output on the web
 
 ![An example (with fake data) of how the output would look like](https://raw.githubusercontent.com/wakaru44/my_dockerplace/master/doc/img/screen_console_01.png)
 
+There are some alternatives on the market, like 'docker compose ui', which does a pretty good job, and other interesting things like 'shipyard','lorry,io', etc... that we will explore shortly.
+
+
 ## TL;DR - Quickstart
 
 clone the repo
@@ -40,3 +43,12 @@ There are tasks ready in a `Makefile`. Just run
     make
 
 to see the available tasks.
+
+
+## Improvements:
+
+- Ensure compat with virtualenv, and avoid sudo in the `pip install`
+
+- Move the "DEBUG" switch to the environment, instead of the config file
+
+- Ease the creation of new apps, and downloading apps from the marketplace
