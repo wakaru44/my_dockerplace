@@ -2,9 +2,8 @@
 from os.path import join, isfile
 import md5
 from fabric.api import local, settings
-from retricon import retricon
 
-from helpers import is_there_makefile, parse_make, sanitize
+from helpers import parse_make, sanitize
 
 
 def do_run(command):
@@ -19,21 +18,29 @@ def get_imageid(something):
     """
     # just in case, keep the locations in a dir
     loc_loc = get_containers(".")
-    location = {"web": "/static/cache", "local": "dockerplace/static/cache"}
+    location = {
+        "web": "/static/cache",
+        "sample": "/static/img",
+        "local": "dockerplace/static/cache"
+        }
     # instead of the string, we use a hash to avoid weird characters
     hashname = md5.new(something).hexdigest()
     # create the identicon
-    print hashname
     # save in the local folder under a hashname
     filename = hashname + ".png"
     savepath = join(location["local"], filename)
-    if not isfile(savepath):
-        # first ensure we got cache folder
-        if not isfile(location["local"]):
-            do_run("mkdir {0}".format(location["local"]))
-        # only create if it doesn't exist already
-        img = retricon(str(hashname))
-        img.save(savepath, "PNG")
+    try:
+        if not isfile(savepath):
+            # first ensure we got cache folder
+            if not isfile(location["local"]):
+                do_run("mkdir {0}".format(location["local"]))
+            # only create if it doesn't exist already
+            from retricon import retricon
+            img = retricon(str(hashname))
+            img.save(savepath, "PNG")
+    except IOError:
+        # If we couldn't save, we just return the sample picture
+        return join(location["sample"] , "sample_container_icon.png")
     return join(location["web"], filename)
 
 
@@ -41,13 +48,11 @@ def get_container_actions(makefile_base):
     """
     get the available actions from the makefile in a given folder
     """
-    output = do_run("ls {0}".format(makefile_base))
-    if output.find("Makefile") >0:
-    # if is_there_makefile(output):  # this is a dependency nightmare to test
+    if isfile(join(makefile_base, "Makefile")):
         output = do_run(
-            """cd {0};\
-                    cat Makefile | grep "^[a-z]*:" | cut -d ":" -f 1""".format(
+            """cd {0}; grep "^[a-z]*:" Makefile | cut -d ":" -f 1""".format(
                 makefile_base))
+            # """cd {0}; grep "^[a-z]*:" Makefile | cut -d ":" -f 1""".format(
         # actions = parse_make(output)  # for now, I will not try to parse output smart
         actions = output.split("\n")
     else:

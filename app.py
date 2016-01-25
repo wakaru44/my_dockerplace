@@ -13,4 +13,4 @@ if __name__ == '__main__':
         app.logger.addHandler(file_handler)
 
     app.debug = app.config['DEBUG']
-    app.run()
+    app.run(port=5555)

@@ -1,4 +1,5 @@
 
+from os.path import expanduser
 import requests
 from flask import Flask, url_for, render_template, request, \
     redirect, abort, session, g, flash, Markup
@@ -17,7 +18,7 @@ def desktop():
     """
     this route displays a list of available services to the user
     """
-    dhome = app.config["DOCKER_SERVICES_HOME"] 
+    dhome = expanduser(app.config["DOCKER_SERVICES_HOME"])
     return render_template(
         "desktop.html",
         data={
@@ -51,7 +52,7 @@ def console_view():
     service = request.args.get("s")
 
     result = run_make_action(
-        app.config["DOCKER_SERVICES_HOME"],
+        expanduser(app.config["DOCKER_SERVICES_HOME"]),
         service,
         action)
 
