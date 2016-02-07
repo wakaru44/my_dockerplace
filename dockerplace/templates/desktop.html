@@ -27,8 +27,12 @@
 {% for service in data.services %}
         <div class="one-half column value">
           <h2 class="value-multiplier">{{ service["name"] }}</h2>
-           <img class="service-icon" src="{{ service["image"] }}" />
-           {% include "blocks/desktop_actions.html" %}
+           <div class="service-icon one-half column">
+             <img class="service-icon" src="{{ service["image"] }}" />
+           </div> <!-- service-icon div nuevo -->
+           <div class="actions_list one-half column">
+             {% include "blocks/desktop_actions.html" %}
+           </div> <!-- actions list -->
         </div>
 {%endfor%}
       </div> <!-- row -->
