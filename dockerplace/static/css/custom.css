@@ -4,6 +4,13 @@
     color: grey;
 }
 
+
+/* The icon that appears in the desktop */
+#mydockerplace_logo {
+    fill: aliceblue;
+}
+
+
 /* The div that shows the output of the action as a console */
 #output-window {
     background-color:black;
