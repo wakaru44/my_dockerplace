@@ -1,9 +1,11 @@
 
+from os.path import expanduser
 import requests
 from flask import Flask, url_for, render_template, request, \
     redirect, abort, session, g, flash, Markup
 from dockerplace import app
 from dockerplace.system_calls import get_all_actions, run_make_action
+from dockerplace.system_calls import do_run
 
 
 @app.route('/')
@@ -16,13 +18,19 @@ def desktop():
     """
     this route displays a list of available services to the user
     """
+    dhome = expanduser(app.config["DOCKER_SERVICES_HOME"])
     return render_template(
         "desktop.html",
         data={
-            "services": get_all_actions(app.config["DOCKER_SERVICES_HOME"]),
-            "debug": app.config["DEBUG"]
+            "services": get_all_actions(dhome),
+            "debug": {
+                "enabled": app.config["DEBUG"],
+                "data": {
+                    "docker_home": dhome,
+                    "listing": do_run("cat {0}/docker.compose_ui/Makefile".format(dhome))}
             }
-        )
+        }
+    )
 
 
 @app.route('/quickstart')
@@ -44,7 +52,7 @@ def console_view():
     service = request.args.get("s")
 
     result = run_make_action(
-        app.config["DOCKER_SERVICES_HOME"],
+        expanduser(app.config["DOCKER_SERVICES_HOME"]),
         service,
         action)
 
