@@ -57,4 +57,6 @@ to see the available tasks.
 
 - do some previous validation of the destination folder, docker setup.
 
+- allow the app to shut down itself
 
+- add a link to the start menu/the system apps 
