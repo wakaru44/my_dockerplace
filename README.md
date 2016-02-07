@@ -44,6 +44,22 @@ Inside this folder, you must place a `Makefile`. The app will read it to find th
 
 Change the folder in settings.py to the one in your machine.
 
+### Installing a link in the desktop
+
+To install an icon in your system, you can use the existing template.
+
+- Copy the file in `files/my_dockerplace.desktop` to your desktop (usually on ~/Desktop)
+
+- Edit the file `~/Desktop/my_dockerplace.desktop` and change `{{app_home}}` with the absolute path to your "my dockerplace" setup.
+
+- Edit the file `run.sh` in this folder and change `APP_HOME` variable to point to your "my dockerplace" setup.
+
+- Change the permissions to make that link executable
+
+    chmod +x ~/Desktop/my_dockerplace.desktop
+
+- and you should see a link on it
+
 ## Running
 
 There are tasks ready in a `Makefile`. Just run
